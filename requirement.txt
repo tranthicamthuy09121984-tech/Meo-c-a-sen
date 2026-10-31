@@ -1,0 +1,6 @@
+discord.py
+anthropic
+Flask
+discord.ext
+commands
+google-genai
