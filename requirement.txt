@@ -1,6 +1,5 @@
 discord.py
-anthropic
-Flask
-discord.ext
-commands
+flask
 google-genai
+anthropic
+openai

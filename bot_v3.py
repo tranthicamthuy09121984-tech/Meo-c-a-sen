@@ -28,7 +28,7 @@ def keep_alive():
 gemini_client = genai.Client(api_key=os.getenv("GEMINI_API_KEY"))
 claude_client = anthropic.Anthropic(api_key=os.getenv("ANTHROPIC_API_KEY"))
 openai_client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
-deepseek_client = OpenAI(
+cc
     api_key=os.getenv("DEEPSEEK_API_KEY"),
     base_url="https://api.deepseek.com",
 )
