@@ -1,0 +1,9 @@
+@echo off
+cd /d "%~dp0"
+set DISCORD_TOKEN=MTU2MjQ1OTc0Mzg3OTA0NTE4MA.Ghwt_G.VkavA4q4m_w8mnkytakoJoENs0S8hejLu9pnMM
+set GEMINI_API_KEY=AQ.Ab8RN6IgniN3Huh8lQzvEGZ4jZktBozgpsZ6kaDf1JOrTPIScw
+set ANTHROPIC_API_KEY=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
+set OPENAI_API_KEY=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
+set DEEPSEEK_API_KEY=sk-8438ee2ecf8443d398dbbc99afbefed0
+python bot_v3.py
+pause

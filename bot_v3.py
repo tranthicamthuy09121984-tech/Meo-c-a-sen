@@ -2,7 +2,6 @@
 import os
 import asyncio
 from threading import Thread
-
 import discord
 from discord import app_commands
 from discord.ext import commands
@@ -10,6 +9,9 @@ from flask import Flask
 from google import genai
 import anthropic
 from openai import OpenAI
+import base64
+import io
+import logging
 
 # ---------- Keep alive ----------
 app = Flask(__name__)
@@ -50,6 +52,30 @@ bot = commands.Bot(command_prefix="!", intents=intents)
 async def on_ready():
     await bot.tree.sync()
     print(f"Đã đăng nhập: {bot.user}")
+
+@bot.tree.command("name="image", description="Image với GPT Image 2")
+def image(interaction: discord.Interaction str):
+    stream = openai_client.responses.create(
+        model=MODELS["chatgpt"],  # "gpt-6-luna"
+        service_tier="fast",
+        input=message,
+        text={"format": {"type": "text"}, "verbosity": "high"},
+        reasoning={"effort": "max", "mode": "pro", "summary": "auto"},
+        tools=[],
+        stream=True,
+        store=True,
+        include=["reasoning.encrypted_content", "web_search_call.action.sources"],
+    )
+
+    ket_qua = []
+    for event in stream:
+        if event.type in ("response.output_text.delta", "response.refusal.delta"):
+            ket_qua.append(event.delta)
+        elif event.type == "error":
+            raise RuntimeError(event.message)
+        elif event.type == "response.failed":
+            raise RuntimeError(event.response.error)
+    return "".join(ket_qua)
 
 @bot.tree.command(name="heymeo", description="Đánh thức Meo")
 async def heymeo(interaction: discord.Interaction):
